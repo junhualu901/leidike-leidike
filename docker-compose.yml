@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # MongoDB 数据库
+  mongodb:
+    image: mongo:7.0-latest
+    container_name: leidike-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: leidike
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    networks:
+      - leidike-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # 后端服务
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: leidike-server
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://admin:password@mongodb:27017/leidike?authSource=admin
+      SERVER_PORT: 3001
+      JWT_SECRET: your-secret-key-here
+      REACT_APP_API_URL: http://localhost:3001/api
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    networks:
+      - leidike-network
+    command: npm run dev
+
+  # 前端服务
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    container_name: leidike-client
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      REACT_APP_API_URL: http://localhost:3001/api
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    networks:
+      - leidike-network
+    depends_on:
+      - server
+    command: npm start
+
+volumes:
+  mongodb_data:
+  mongodb_config:
+
+networks:
+  leidike-network:
+    driver: bridge

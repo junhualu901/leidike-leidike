@@ -1,0 +1,40 @@
+{
+  "name": "leidike-leidike",
+  "version": "0.1.0",
+  "description": "双向情感干预 - 一个现代化的情感互动平台",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "test": "concurrently \"npm run test:server\" \"npm run test:client\"",
+    "test:server": "cd server && npm test",
+    "test:client": "cd client && npm test",
+    "lint": "concurrently \"npm run lint:server\" \"npm run lint:client\"",
+    "lint:server": "cd server && npm run lint",
+    "lint:client": "cd client && npm run lint",
+    "format": "concurrently \"npm run format:server\" \"npm run format:client\"",
+    "format:server": "cd server && npm run format",
+    "format:client": "cd client && npm run format",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:clean": "docker-compose down -v"
+  },
+  "keywords": [
+    "emotion",
+    "interaction",
+    "social",
+    "mental-health"
+  ],
+  "author": "junhualu901",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
