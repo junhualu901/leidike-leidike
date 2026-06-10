@@ -1,0 +1,56 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+  
+  <!-- Inner circle for contrast -->
+  <circle cx="256" cy="256" r="240" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Heart shape with intricate neural/connection lines -->
+  <g transform="translate(256, 256)">
+    <!-- Main heart shape -->
+    <path d="M 0,-40 C -60,-20 -80,20 -80,60 C -80,120 -40,160 0,200 C 40,160 80,120 80,60 C 80,20 60,-20 0,-40 Z" 
+          fill="url(#heartGradient)" stroke="#1e40af" stroke-width="2"/>
+    
+    <!-- Inner world lines - neural connections -->
+    <g opacity="0.6" stroke="#1e40af" stroke-width="1.5" fill="none">
+      <!-- Vertical lines -->
+      <path d="M -20,-30 Q -15,-10 -18,10 Q -20,30 -15,50 Q -10,80 -5,120"/>
+      <path d="M 0,-35 L 0,50 Q 5,100 0,150"/>
+      <path d="M 20,-30 Q 15,-10 18,10 Q 20,30 15,50 Q 10,80 5,120"/>
+      
+      <!-- Curved connecting paths -->
+      <path d="M -30,0 Q -20,20 -10,40 Q 0,60 10,75"/>
+      <path d="M -35,30 Q -15,50 5,80"/>
+      <path d="M 35,30 Q 15,50 -5,80"/>
+      
+      <!-- Circular connections (worlds) -->
+      <circle cx="-25" cy="20" r="8" opacity="0.5"/>
+      <circle cx="25" cy="20" r="8" opacity="0.5"/>
+      <circle cx="0" cy="80" r="8" opacity="0.5"/>
+      <circle cx="-15" cy="120" r="6" opacity="0.4"/>
+      <circle cx="15" cy="120" r="6" opacity="0.4"/>
+      
+      <!-- Interconnecting threads -->
+      <path d="M -25,20 Q 0,40 25,20"/>
+      <path d="M -25,20 Q -10,60 0,80"/>
+      <path d="M 25,20 Q 10,60 0,80"/>
+      <path d="M 0,80 Q -12,100 -15,120"/>
+      <path d="M 0,80 Q 12,100 15,120"/>
+    </g>
+    
+    <!-- Highlight for 3D effect -->
+    <ellipse cx="-30" cy="-20" rx="25" ry="30" fill="#ffffff" opacity="0.3"/>
+  </g>
+</svg>
